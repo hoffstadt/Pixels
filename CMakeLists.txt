@@ -3,3 +3,4 @@
 project ("Pixels")
 
 add_subdirectory ("Pixels")
+add_subdirectory ("Sandbox")
