@@ -52,6 +52,8 @@ namespace Pixels {
 
 		void beginFrame ();
 		void endFrame   ();
+		void drawLine(int x1, int y1, int x2, int y2, Pixels::Color c);
+		void putPixel(int x, int y, Color c);
 		void putPixel(int x, int y, int r, int g, int b);
 
 	private:

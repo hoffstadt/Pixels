@@ -249,6 +249,61 @@ namespace Pixels {
 
     }
 
+	void Graphics::drawLine(int x1, int y1, int x2, int y2, Pixels::Color c)
+	{
+
+		const float dx = x2 - x1;
+		const float dy = y2 - y1;
+
+		if (dy == 0.0f && dx == 0.0f)
+			putPixel(x1, y1, c);
+
+
+		else if (abs(dy) > abs(dx))
+		{
+			if (dy < 0.0f)
+			{
+				std::swap(x1, x2);
+				std::swap(y1, y2);
+			}
+
+			const float m = dx / dy;
+			float y = y1;
+			int lastIntY;
+			for (float x = x1; y < y2; y += 1.0f, x += m)
+			{
+				lastIntY = y;
+				putPixel(x, lastIntY, c);
+			}
+			if (y2 > lastIntY)
+				putPixel(x2, y2, c);
+		}
+		else
+		{
+			if (dx < 0.0f)
+			{
+				std::swap(x1, x2);
+				std::swap(y1, y2);
+			}
+
+			const float m = dy / dx;
+			float x = x1;
+			int lastIntX;
+			for (float y = y1; x < x2; x += 1.0f, y += m)
+			{
+				lastIntX = x;
+				putPixel(lastIntX, y, c);
+			}
+			if (x2 > lastIntX)
+				putPixel(x2, y2, c);
+		}
+	}
+
+	void Graphics::putPixel(int x, int y, Color c)
+	{
+		m_sysBuffer[m_width * y + x] = c;
+	}
+
 	void Graphics::putPixel(int x, int y, int r, int g, int b)
 	{
 		m_sysBuffer[m_width * y + x] = { unsigned char(r), unsigned char(g),unsigned char(b) };

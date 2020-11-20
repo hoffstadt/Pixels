@@ -18,6 +18,8 @@ int main()
         graphics.putPixel(101, 101, 0, 255, 0);
         graphics.putPixel(102, 102, 0, 0, 255);
 
+        graphics.drawLine(300, 200, 200, 300, { 255, 0, 255 });
+
         graphics.endFrame();
     }
 
